@@ -36,6 +36,7 @@ if auth_type == 'auth':
 elif auth_type == 'basic_auth':
     auth = BasicAuth()
 
+
 @app.errorhandler(404)
 def not_found(error) -> str:
     """Handle 404 Not Found errors.
@@ -43,6 +44,7 @@ def not_found(error) -> str:
     Returns a JSON response with a 404 status code.
     """
     return jsonify({"error": "Not found"}), 404
+
 
 @app.errorhandler(401)
 def unauthorized(error) -> str:
@@ -52,6 +54,7 @@ def unauthorized(error) -> str:
     """
     return jsonify({"error": "Unauthorized"}), 401
 
+
 @app.errorhandler(403)
 def forbidden(error) -> str:
     """Handle 403 Forbidden errors.
@@ -59,6 +62,7 @@ def forbidden(error) -> str:
     Returns a JSON response with a 403 status code.
     """
     return jsonify({"error": "Forbidden"}), 403
+
 
 @app.before_request
 def authenticate_user():
@@ -82,9 +86,9 @@ def authenticate_user():
             if user is None:
                 abort(403)  # Abort with 403 Forbidden if no valid user
 
+
 if __name__ == "__main__":
     # Get the host and port from environment variables, with defaults
     host = getenv("API_HOST", "0.0.0.0")
     port = int(getenv("API_PORT", "5000"))
     app.run(host=host, port=port)
-
