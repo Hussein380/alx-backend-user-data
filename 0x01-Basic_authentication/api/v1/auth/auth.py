@@ -34,7 +34,7 @@ class Auth:
             request: The HTTP request object
 
         Returns:
-            str: The value of the Authorization header, or None if not presen
+            str: The value of the Authorization header, or None if not present
         """
         if request is None:
             return None

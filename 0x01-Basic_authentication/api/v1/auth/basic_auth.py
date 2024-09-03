@@ -10,8 +10,8 @@ from models.user import User
 class BasicAuth(Auth):
     """ Basic authentication class """
 
-    def extract_base64_authorization_header(self, authorization_header: str)
-    -> str:
+    def extract_base64_authorization_header(
+            self, authorization_header: str) -> str:
         """Extracts the Base64 part of the Authorization header
 
         Args:
@@ -26,8 +26,8 @@ class BasicAuth(Auth):
             return None
         return authorization_header[6:]
 
-    def decode_base64_authorization_header(self, base64_authorization_header:
-                                           str) -> str:
+    def decode_base64_authorization_header(
+            self, base64_authorization_header: str) -> str:
         """Decodes the Base64 string into a UTF-8 string
 
         Args:
@@ -45,8 +45,8 @@ class BasicAuth(Auth):
         except Exception:
             return None
 
-    def extract_user_credentials(self, decoded_base64_authorization_header:
-                                 str) -> (str, str):
+    def extract_user_credentials(
+            self, decoded_base64_authorization_header: str) -> (str, str):
         """Extracts user email and password from the decoded Base64 string
 
         Args:
@@ -62,8 +62,8 @@ class BasicAuth(Auth):
             return None, None
         return decoded_base64_authorization_header.split(':', 1)
 
-    def user_object_from_credentials(self, user_email: str, user_pwd: str)
-    -> TypeVar('User'):
+    def user_object_from_credentials(
+            self, user_email: str, user_pwd: str) -> TypeVar('User'):
         """Retrieves the User instance based on email and password
 
         Args:
